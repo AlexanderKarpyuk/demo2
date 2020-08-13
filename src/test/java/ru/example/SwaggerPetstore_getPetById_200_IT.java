@@ -23,23 +23,20 @@ import ru.lanit.utils.InterceptorHandler;
  */
 public class SwaggerPetstore_getPetById_200_IT extends TestNGCitrusSupport {
     @CitrusTest
-    @Test(
-            enabled = false
-    )
+    @Test
     @Parameters("runner")
     public void swaggerPetstore_getPetById_200_IT(@CitrusResource @Optional TestCaseRunner runner) {
         runner.run(echo("TODO: Code the test SwaggerPetstore_getPetById_200_IT"));
 
         runner.run(http().client("httpClient")
             .send()
-            .get(InterceptorHandler.getPath("/v2/pet/citrus:randomNumber(10)"))
+            .get(InterceptorHandler.getPath("/v2/pet/1"))
             .contentType("application/json")
         );
 
         runner.run(http().client("httpClient")
             .receive()
             .response(HttpStatus.OK)
-            .payload("{\"id\": \"@isNumber()@\",\"category\": {\"id\": \"@isNumber()@\",\"name\": \"@notEmpty()@\"},\"name\": \"@notEmpty()@\",\"photoUrls\": \"@ignore@\",\"tags\": \"@ignore@\",\"status\": \"@matches(available|pending|sold)@\"}")
         );
 
     }
